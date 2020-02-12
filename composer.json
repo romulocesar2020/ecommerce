@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Banco\\": "vendor\\romulocesar2020\\php-classes\\src"
+            "Banco\\": "vendor\\banco\\php-classes\\src"
         }
     }
 }

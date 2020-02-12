@@ -2,17 +2,24 @@
 
 require_once("vendor/autoload.php");
 
-$app = new \Slim\Slim();
+use \Slim\Slim;
+use \Banco\Page;
+
+$app = new Slim();
 
 $app->config('debug', true);
 
 $app->get('/', function() {
+
+	$page = new Page();
+
+	$page->setTpl("index");
     
-	$sql = new Banco\DB\Sql();
+	/*$sql = new Banco\DB\Sql();
 
 	$results = $sql->select("SELECT * FROM tb_users");
 
-	echo json_encode($results);
+	echo json_encode($results);*/
 
 });
 

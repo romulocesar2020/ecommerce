@@ -16,7 +16,7 @@ class ComposerStaticInit7a08fcaaad15a1f68f57e67a449deaee
     public static $prefixDirsPsr4 = array (
         'Banco\\' => 
         array (
-            0 => __DIR__ . '/..' . '/romulocesar2020/php-classes/src',
+            0 => __DIR__ . '/..' . '/banco/php-classes/src',
         ),
     );
 
