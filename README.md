@@ -1,5 +1,21 @@
-# Projeto E-commerce
+### Projeto e-commerce
 
-Projeto desenvolvido do zero no [Curso de PHP 7](https://www.udemy.com/curso-completo-de-php-7/) disponível na plataforma da Udemy e no site do [HTML5dev.com.br](https://www.html5dev.com.br/curso/curso-completo-de-php-7).
+## Linguagem PHP 7
 
-Template usado no projeto [Almsaeed Studio](https://almsaeedstudio.com)
+ - Orientada a Objeto (OO) 
+
+## Kanban
+
+ - É um sistema de controle de estoques, também conhecido como Toyotismo criado para apoiar o método de produção enxuta, o Just in time, entre 1947 e 1975.
+
+ - Aumenta a produtividade e a eficiência, evitando o desperdício sem criar estoque, e elimina o tempo de espera, a superprodução, os gargalos de transporte, o inventário desnecessário, entre outros.	  
+
+ - Originado no setor de produção, ele se tornou um território conquistado pelos desenvolvedores de software, e atualmente está sendo reconhecido por negócios de várias áreas.
+
+ - É literalmente traduzido como quadro de sinal ou sinal visual. O quadro Kanban mais simples possui três colunas
+ 
+    - To Do -> “Para fazer”;
+    - In progress -> “Em Progresso”;
+    - Done -> “Concluído”;
+
+
