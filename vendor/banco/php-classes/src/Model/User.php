@@ -134,7 +134,7 @@
 		public function update()
 		{
 
-						$sql = new Sql();
+			$sql = new Sql();
 			
 			$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
 
@@ -229,7 +229,8 @@
 
 		}
 
-		public static function validForgotDecrypt($code){
+		public static function validForgotDecrypt($code)
+		{
 
 			$code = base64_decode($code);
 
@@ -265,7 +266,8 @@
 
 		}
 
-		public static function setForgotUsed($idrecovery){
+		public static function setForgotUsed($idrecovery)
+		{
 
 			$sql = new Sql();
 
@@ -277,16 +279,26 @@
 
 		}
 
-		public function setPassword($password){
+		public function setPassword($password)
+		{
 
 			$sql = new Sql();
 
-			$sql->query("UPDATE tb_users SET despassword = :password WHERE iduser", array(
+			$sql->query("UPDATE tb_users SET despassword = :password WHERE iduser = :iduser", array(
 
 				":password"=>$password,
 				":iduser"=>$this->getiduser()
 
 			));
+
+		}
+
+		public static function getPasswordHash($password)
+		{
+
+			return password_hash($password, PASSWORD_DEFAULT, [
+				'cost'=>12
+			]);
 
 		}
 
