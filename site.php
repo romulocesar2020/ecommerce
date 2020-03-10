@@ -29,7 +29,7 @@
 
 	$pages = [];
 
-	for ($i=0; $i <= $pagination['pages'] ; $i++) { 
+	for ($i=1; $i <= $pagination['pages'] ; $i++) { 
 		
 		array_push($pages, [
 
@@ -51,5 +51,22 @@
 	]);
 
 });
+
+$app->get("/products/:desurl", function($desurl){
+
+	$product = new Product();
+
+	$product->getFromURL($desurl);
+
+	$page = new Page();
+
+	$page->setTpl("product-detail", [
+
+		'product'=>$product->getValues(),
+		'categories'=>$product->getCategories()
+
+	]);
+
+});	
 
 ?>
