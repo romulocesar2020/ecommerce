@@ -3,6 +3,7 @@
 	use \Banco\Page;
 	use \Banco\Model\Product;
 	use \Banco\Model\Category;
+	use \Banco\Model\Cart;
 
 	$app->get('/', function() {
 
@@ -67,6 +68,18 @@ $app->get("/products/:desurl", function($desurl){
 
 	]);
 
-});	
+});
+
+$app->get("/cart", function(){
+
+	$cart = Cart::getFromSession();
+
+	$page = new Page();
+
+	$page->setTpl("/cart");
+
+	
+
+});
 
 ?>
