@@ -7,7 +7,7 @@ class Sql {
 	const HOSTNAME = "127.0.0.1";
 	const USERNAME = "root";
 	const PASSWORD = "";
-	const DBNAME = "db_ecommerce";
+	const DBNAME = "ecommerce";
 
 	private $conn;
 
@@ -17,10 +17,12 @@ class Sql {
 		$this->conn = new \PDO(
 			"mysql:dbname=".Sql::DBNAME.";host=".Sql::HOSTNAME, 
 			Sql::USERNAME,
-			Sql::PASSWORD
+			Sql::PASSWORD,
+			array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
 		);
 
 	}
+	//$this->conn = new \PDO( "mysql:dbname=".Sql::DBNAME.";host=".Sql::HOSTNAME, Sql::USERNAME, Sql::PASSWORD, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
 	private function setParams($statement, $parameters = array())
 	{

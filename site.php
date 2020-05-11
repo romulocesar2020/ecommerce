@@ -6,6 +6,9 @@
 	use \Banco\Model\Cart;
 	use \Banco\Model\Address;
 	use \Banco\Model\User;
+	use \Banco\Model\Order;
+	use \Banco\Model\OrderStatus;
+
 
 	$app->get('/', function() {
 
@@ -151,7 +154,7 @@ $app->post("/cart/freight", function() {
 
 });
 
-$app->get("/checkout", function(){
+$app->get("/checkout", function() {
 
 	User::verifyLogin(false);
 
@@ -198,9 +201,9 @@ $app->get("/checkout", function(){
 
 });
 
-$app->post("/checkout", function(){
+$app->post("/checkout", function() {
 
-	User::verifyLogin(false);
+	User::verifyLogin(false);	
 
 	if (!isset($_POST['zipcode']) || $_POST['zipcode'] === '') {
 		Address::setMsgError("Informe o CEP.");
@@ -210,6 +213,12 @@ $app->post("/checkout", function(){
 
 	if (!isset($_POST['desaddress']) || $_POST['desaddress'] === '') {
 		Address::setMsgError("Informe o endereço.");
+		header('Location: /checkout');
+		exit;
+	}
+
+	if (!isset($_POST['desnumber']) || $_POST['desnumber'] === '') {
+		Address::setMsgError("Informe o número de sua residência ou local de entrega de sua escolha.");
 		header('Location: /checkout');
 		exit;
 	}
@@ -240,16 +249,19 @@ $app->post("/checkout", function(){
 
 	$user = User::getFromSession();
 
-	$address = new Address();
+	$address = new Address();	
 
 	$_POST['deszipcode'] = $_POST['zipcode'];
-	$_POST['idperson'] = $user->getidperson();
+	$_POST['idperson'] = $user->getidperson();	
 
 	$address->setData($_POST);
-
+	
 	$address->save();
 
-	$cart = Cart::getFromSession();
+	header("Location: /order");
+	exit;
+
+	/*$cart = Cart::getFromSession();
 
 	$cart->getCalculateTotal();
 
@@ -265,6 +277,9 @@ $app->post("/checkout", function(){
 
 	$order->save();
 
+	header("Location: /order/".$order->getidorder());
+
+
 	switch ((int)$_POST['payment-method']) {
 
 		case 1:
@@ -277,11 +292,11 @@ $app->post("/checkout", function(){
 
 	}
 
-	exit;
+	exit;*/
 
 });
 
-$app->get("/login", function(){
+$app->get("/login", function() {
 	
 	$page = new Page();
 
@@ -295,7 +310,7 @@ $app->get("/login", function(){
 
 });
 
-$app->post("/login", function(){
+$app->post("/login", function() {
 
 	try {
 
@@ -312,7 +327,7 @@ $app->post("/login", function(){
 
 });
 
-$app->get("/logout", function(){
+$app->get("/logout", function() {
 
 	User::logout();
 
@@ -321,7 +336,7 @@ $app->get("/logout", function(){
 
 });
 
-$app->post("/register", function(){
+$app->post("/register", function() {
 
 	$_SESSION['registerValues'] = $_POST;
 
@@ -388,7 +403,7 @@ $app->get("/forgot", function() {
 
 });
 
-$app->post("/forgot", function(){
+$app->post("/forgot", function() {
 
 	$user = User::getForgot($_POST["email"], false);
 
@@ -397,7 +412,7 @@ $app->post("/forgot", function(){
 
 });
 
-$app->get("/forgot/sent", function(){
+$app->get("/forgot/sent", function() {
 
 	$page = new Page();
 
@@ -419,7 +434,7 @@ $app->get("/forgot/reset", function(){
 
 });
 
-$app->post("/forgot/reset", function(){
+$app->post("/forgot/reset", function() {
 
 	$forgot = User::validForgotDecrypt($_POST["code"]);	
 
@@ -457,7 +472,7 @@ $app->get("/profile", function() {
 
 });
 
-$app->post("/profile", function(){
+$app->post("/profile", function() {
 
 	User::verifyLogin(false);
 
@@ -487,6 +502,7 @@ $app->post("/profile", function(){
 
 	}
 
+	$_POST['iduser'] = $user->getiduser();
 	$_POST['inadmin'] = $user->getinadmin();
 	$_POST['despassword'] = $user->getdespassword();
 	$_POST['deslogin'] = $_POST['desemail'];
@@ -499,6 +515,31 @@ $app->post("/profile", function(){
 
 	header('Location: /profile');
 	exit;
+
+});
+
+$app->get("/order/:idorder", function($idorder) {
+
+	User::verifyLogin(false);
+
+	$order = new Order();
+
+	$order->get((int)$idorder);
+
+	var_dump($order->getValues());
+	exit;
+
+	$page = new Page();
+
+	$page->setTpl("payment", [
+		'order'=>$order->getValues()
+	]);
+
+});
+
+$app->get("/boleto/:idorder", function($idorder) {
+
+
 
 });
 

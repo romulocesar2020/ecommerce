@@ -1,5 +1,8 @@
 <?php
 
+	use \Banco\PageAdmin;
+	use \Banco\Model\User;
+
 	$app->get("/admin/forgot", function() {
 
 	$page = new PageAdmin([
