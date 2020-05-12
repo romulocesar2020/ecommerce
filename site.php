@@ -545,7 +545,7 @@ $app->get("/boleto/:idorder", function($idorder) {
 	$data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
 	$valor_cobrado = $order->getvltotal(); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
 	$valor_cobrado = str_replace(",", ".",$valor_cobrado);
-	$valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
+	$valor_boleto = number_format($valor_cobrado + $taxa_boleto, 2, ',', '');
 
 	$dadosboleto["nosso_numero"] = $order->getidorder();  // Nosso numero - REGRA: Máximo de 8 caracteres!
 	$dadosboleto["numero_documento"] = $order->getidorder();	// Num do pedido ou nosso numero
@@ -639,7 +639,7 @@ $app->get("/profile/orders/:idorder", function($idorder){
 
 });
 
-$app->get("/profile/change-password", function(){
+$app->get("/profile-change-password", function(){
 
 	User::verifyLogin(false);
 
@@ -652,7 +652,7 @@ $app->get("/profile/change-password", function(){
 
 });
 
-$app->post("/profile/change-password", function(){
+$app->post("/profile-change-password", function(){
 
 	User::verifyLogin(false);
 
@@ -667,7 +667,7 @@ $app->post("/profile/change-password", function(){
 	if (!isset($_POST['new_pass']) || $_POST['new_pass'] === '') {
 
 		User::setError("Digite a nova senha.");
-		header("Location: /profile/change-password");
+		header("Location: /profile-change-password");
 		exit;
 
 	}
@@ -683,7 +683,7 @@ $app->post("/profile/change-password", function(){
 	if ($_POST['current_pass'] === $_POST['new_pass']) {
 
 		User::setError("A sua nova senha deve ser diferente da atual.");
-		header("Location: /profile/change-password");
+		header("Location: /profile-change-password");
 		exit;		
 
 	}
@@ -693,7 +693,7 @@ $app->post("/profile/change-password", function(){
 	if (!password_verify($_POST['current_pass'], $user->getdespassword())) {
 
 		User::setError("A senha está inválida.");
-		header("Location: /profile/change-password");
+		header("Location: /profile-change-password");
 		exit;			
 
 	}

@@ -58,7 +58,7 @@
 
 		}
 
-		/*public static function listAll()
+		public static function listAll()
 		{
 
 			$sql = new Sql();
@@ -208,7 +208,7 @@
 				'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
 			];
 
-		}*/
+		}
 
 	}
 
