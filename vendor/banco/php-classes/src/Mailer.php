@@ -6,8 +6,8 @@
 
 	class Mailer{
 
-		const USERNAME = "romulocssilva2016@gmail.com";
-		const PASSWORD = "Silva25Solar";
+		const USERNAME = "seu email";
+		const PASSWORD = "sua senha";
 		const NAME_FROM = "Aula Php 7 com PHPMailer";
 
 		private $mail;
