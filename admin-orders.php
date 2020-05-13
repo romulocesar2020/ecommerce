@@ -87,8 +87,8 @@ $app->get("/admin/orders/:idorder", function($idorder){
 $app->get("/admin/orders", function(){
 
 	User::verifyLogin();
-/*
-	/*$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+
+	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
 	if ($search != '') {
@@ -114,14 +114,16 @@ $app->get("/admin/orders", function(){
 			'text'=>$x+1
 		]);
 
-	}*/
+	}
 
 	$page = new PageAdmin();
 
 	$page->setTpl("orders", [
-		"orders"=>Order::listAll() //$pagination['data']
-		//"search"=>$search,
-		//"pages"=>$pages
+
+		"orders"=>$pagination['data'],
+		"search"=>$search,
+		"pages"=>$pages
+		
 	]);
 
 });
