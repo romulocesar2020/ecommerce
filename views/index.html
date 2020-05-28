@@ -87,14 +87,14 @@
                             {loop="$products"}
                             <div class="single-product">
                                 <div class="product-f-image">
-                                    <img src="{$value.desphoto}" alt="">
+                                    <img src="{$value.desphoto}" alt="" style="min-height: 200px;">
                                     <div class="product-hover">
                                         <a href="/cart/{$value.idproduct}/add" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Comprar</a>
                                         <a href="/products/{$value.desurl}" class="view-details-link"><i class="fa fa-link"></i> Ver Detalhes</a>
                                     </div>
                                 </div>
-                                
-                                <h2><a href="/products/{$value.desurl}">{$value.desproduct}</a></h2>
+                                <!-- <h2><a href="/products/{$value.desurl}">{$value.desproduct}</a></h2> --->
+                                <h2><a href="/products/{$value.desurl}" class="view-details-link" style="margin-top:15px;">{$value.desproduct}</a></h2>
                                 
                                 <div class="product-carousel-price">
                                     <ins>R${function="formatPrice($value.vlprice)"}</ins>

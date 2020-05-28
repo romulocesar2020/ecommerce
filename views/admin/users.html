@@ -41,7 +41,7 @@
                     <th>E-mail</th>
                     <th>Login</th>
                     <th style="width: 60px">Admin</th>
-                    <th style="width: 140px">&nbsp;</th>
+                    <th style="width: 250px">&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
